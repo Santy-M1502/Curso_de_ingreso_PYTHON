@@ -33,7 +33,11 @@ class App(customtkinter.CTk):
 
 
     def btn_mostrar_on_click(self):
-        pass
+        sueldo_ingresar = self.txt_sueldo.get()
+        sueldo_ingresado = int(sueldo_ingresar)
+        incremento = 15 * sueldo_ingresado / 100
+        sueldo_incremento = sueldo_ingresado + incremento
+        alert("UTN FRA", "Su nuevo sueldo con incremento es: " + str(sueldo_incremento))
         
     
 if __name__ == "__main__":

@@ -46,7 +46,7 @@ class App(customtkinter.CTk):
         incremento_numero = float(incremento_texto)
         incremento_sueldo = sueldo_numero * incremento_numero / 100 
         sueldo_total = sueldo_numero + incremento_sueldo
-        alert("Aumentos", "Su sueldo con el incremento incorporado es: " + str(sueldo_total))
+        alert("UTN FRA", "Su sueldo con el incremento incorporado es: " + str(sueldo_total))
     
 if __name__ == "__main__":
     app = App()

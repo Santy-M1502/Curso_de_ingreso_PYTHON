@@ -48,7 +48,7 @@ class App(customtkinter.CTk):
         descuento_numero = float(descuento_texto)
         descuento_importe = importe_numero * descuento_numero / 100 
         importe_total = importe_numero - descuento_importe
-        alert("Descontando", "Su nuevo valor de importe sera : " + str(importe_total))
+        alert("UTN FRA", "Su nuevo valor de importe sera : " + str(importe_total))
 
 
 if __name__ == "__main__":
