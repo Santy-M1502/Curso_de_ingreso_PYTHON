@@ -5,14 +5,14 @@ from tkinter.simpledialog import askstring as prompt
 import customtkinter
 
 '''
-nombre:
-apellido:
+nombre: Santiago
+apellido: Martinez
 ---
 Ejercicio: entrada_salida_08
 ---
 Enunciado:
 Al presionar el botón  'Calcular', se deberán obtener los valores contenidos en las cajas de texto (txtOperadorA y txtOperadorB), 
-transformarlos en números enteros, calcular y mostrar el resto de la división entre ambos números, utilizando el Dialog Alert. 
+transformarlos en números enteros, calcular y mostrar el resto de la división utilizando el Dialog Alert. 
 Ej: "El resto de dividir 7 por 2 es: 1" 
 '''
 
@@ -21,6 +21,7 @@ class App(customtkinter.CTk):
     def __init__(self):
         super().__init__()
 
+        # configure window
         self.title("UTN FRA")
 
         self.label1 = customtkinter.CTkLabel(master=self, text="Operador A")
@@ -40,7 +41,12 @@ class App(customtkinter.CTk):
 
 
     def btn_mostrar_on_click(self):
-        pass
+        operador_a_texto = self.txt_operador_a.get()
+        operador_b_texto = self.txt_operador_b.get()
+        operador_a_numero = int(operador_a_texto)
+        operador_b_numero =int(operador_b_texto)
+        resultado_restos = operador_a_numero % operador_b_numero
+        alert(title="¿Cuanto resta?", message="El resto de esa division es " + str(resultado_restos))
         
         
     
