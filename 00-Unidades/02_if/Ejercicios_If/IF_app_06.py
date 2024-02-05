@@ -5,13 +5,13 @@ from tkinter.simpledialog import askstring as prompt
 import customtkinter
 
 '''
-nombre:
-apellido:
+nombre: Santiago
+apellido: Martinez
 ---
-Ejercicio: if_06
+Ejercicio: instrucion_if_06
 ---
 Enunciado:
-Al presionar el botón 'Calcular', se deberá obtener el contenido de la caja de texto txtEdad, 
+Al presionar el botón  'Calcular', se deberá obtener contenido en la caja de texto txtEdad, 
 transformarlo en número y calcular si es mayor, niño/a(menor de 10) o pre-adolescente 
 (edad entre 10 y 13 años) o adolescente (edad entre 13 y 17 años) de edad, 
 se deberá informar utilizando el Dialog alert.
@@ -22,6 +22,7 @@ class App(customtkinter.CTk):
     def __init__(self):
         super().__init__()
 
+        # configure window
         self.title("UTN FRA")
 
         self.label1 = customtkinter.CTkLabel(master=self, text="Edad")
@@ -35,7 +36,19 @@ class App(customtkinter.CTk):
 
 
     def btn_mostrar_on_click(self):
-        pass
+        edad_texto = self.txt_edad.get()
+        edad_numero = float(edad_texto)
+
+        if(edad_numero >= 0 and edad_numero <= 10):
+            alert("Tu etapa", "Eres un niño!")
+        elif(edad_numero >= 10 and edad_numero <= 12):
+            alert("Tu etapa", "Eres un pre_adolescente!")
+        elif(edad_numero >= 13 and edad_numero <= 17):
+            alert("Tu etapa", "Eres un adolescente")
+        elif(edad_numero >= 18 and edad_numero <= 120):
+            alert("Tu etapa", "Eres un adulto")
+        else:
+            alert("Tu etapa", "Eso es imposible!!!")
 
         
         
