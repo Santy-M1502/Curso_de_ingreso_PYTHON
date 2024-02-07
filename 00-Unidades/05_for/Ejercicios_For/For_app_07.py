@@ -26,7 +26,16 @@ class App(customtkinter.CTk):
 
 
     def btn_mostrar_on_click(self):
-        pass
+        numero_ingresar = prompt("Numeros Primos", "Ingrese un numero")
+        numero_ingresado = int(numero_ingresar)
+        for NumeroPrimo in range(numero_ingresado):
+           numero_ingresado = numero_ingresado % 2
+           if(numero_ingresado == 1):
+               alert("Numeros Primos","El numero ingresado es un numero PRIMO")
+               break
+           elif(numero_ingresado == 0):
+               alert("Numeros Primos", "El numero ingresado es un numero COMPUESTO")
+               break
         
     
 if __name__ == "__main__":

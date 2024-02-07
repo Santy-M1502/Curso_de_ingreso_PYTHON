@@ -26,7 +26,11 @@ class App(customtkinter.CTk):
 
 
     def btn_mostrar_on_click(self):
-        pass
+        for nueve in range(10):
+            numero_ingresar = prompt("UTN FRA", "Ingrese valores")
+            numero_ingresado = int(numero_ingresar)
+            if numero_ingresado == 9:
+                break
         
     
 if __name__ == "__main__":

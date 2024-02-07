@@ -28,7 +28,11 @@ class App(customtkinter.CTk):
 
 
     def btn_mostrar_on_click(self):
-        pass 
+        numeros = [1, 2, 3, 4, 5]
+        for un_numero in numeros:
+            alert("Numeros", un_numero)
+            if un_numero >= 6:
+                break 
        
             
 
