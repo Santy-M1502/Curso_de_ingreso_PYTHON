@@ -55,7 +55,29 @@ class App(customtkinter.CTk):
         self.btn_validar.grid(row=4, pady=20, columnspan=2, sticky="nsew")
 
     def btn_validar_on_click(self):
-        pass
+        activador = True
+        while(activador):
+         apellido = self.txt_apellido.get()
+         if not apellido:
+            break
+         edad_texto = self.txt_edad.get()
+         edad_numero = int(edad_texto)
+         if(edad_numero is None):
+            break
+         if(edad_numero < 18 or edad_numero > 90):
+            break
+         estado = self.combobox_tipo.get()
+         legajo_texto = self.txt_legajo.get()
+         if not legajo_texto:
+            break
+         if(len(legajo_texto) > 4):
+            break
+
+         alert("Sus datos ingresados son", " Apellido: " + apellido)
+         alert("Sus datos ingresados son", " Edad: " + str(edad_numero))
+         alert("Sus datos ingresados son", " Estado: " + estado)
+         alert("Sus datos ingresados son", "Legajo: " + legajo_texto)
+         break
 
 
 if __name__ == "__main__":

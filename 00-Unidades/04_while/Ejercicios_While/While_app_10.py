@@ -37,7 +37,32 @@ class App(customtkinter.CTk):
 
 
     def btn_comenzar_ingreso_on_click(self):
-        pass
+        activador = True
+        suma_positivos = 0
+        suma_negativos = 0
+        contador_positivos = 0
+        contador_negativos = 0
+        contador_ceros = 0
+        while(activador):
+            valor_ingresar = prompt("Sumas de todo", "Ingrese los valores que desee")
+            if(valor_ingresar == None):
+                break
+            valor_ingresado = int(valor_ingresar)
+            if(valor_ingresado >= 0):
+                suma_positivos = suma_positivos + valor_ingresado
+                contador_positivos = contador_positivos + 1
+            if(valor_ingresado <= 0):
+                suma_negativos = suma_negativos - valor_ingresado
+                contador_negativos = contador_negativos + 1
+            if("0" in valor_ingresar):
+                contador_ceros = contador_ceros + 1
+        alert("Informacion Final","Los valores finales son; " +
+              "Suma acumulada de negativos: " + str(suma_negativos) + 
+              ". Suma acumulada de positivos: " + str(suma_positivos) + 
+              ". Cantidad de numeros negativos: " + str(contador_negativos) + 
+              ". Cantidad de numeros positivos: " + str(contador_positivos) + 
+              ". Cantidad de ceros: " + str(contador_ceros) + 
+              ". Y la diferencia entre la cantidad de los negativos y positivos es: " + str(contador_positivos - contador_negativos))
 
     
 if __name__ == "__main__":

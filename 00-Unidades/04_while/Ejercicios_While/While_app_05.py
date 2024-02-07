@@ -30,7 +30,15 @@ class App(customtkinter.CTk):
         
     
     def btn_validar_letra_on_click(self):
-        pass
+        letra_ingresar = True
+        letras_validas = {"U", "T", "N"}
+        while(letra_ingresar):
+            letra_ingresada = prompt("Letras", "Ingrese una letra")
+            if(letra_ingresada in letras_validas):
+                alert("Letras", "Letra valida")
+                letra_ingresar = False
+            else:
+                alert("Letras", "Letras invalidas")
             
     
 if __name__ == "__main__":

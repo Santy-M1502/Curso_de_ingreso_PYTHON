@@ -40,7 +40,33 @@ class App(customtkinter.CTk):
                               columnspan=2, sticky="nsew")
 
     def btn_comenzar_ingreso_on_click(self):
-        pass
+        activador = True
+        self.txt_maximo.insert(0, 0)
+        self.txt_minimo.insert(0, 0)
+        primer_valor = prompt("Numero", "Ingrese un numero")
+        self.txt_maximo.delete(0, 100000)
+        self.txt_minimo.delete(0, 100000)
+        self.txt_maximo.insert(0, primer_valor)
+        self.txt_minimo.insert(0, primer_valor)
+        numero_maximo_texto = self.txt_maximo.get()
+        numero_minimo_texto = self.txt_minimo.get()
+        numero_maximo = float(numero_maximo_texto)
+        numero_minimo = float(numero_minimo_texto)
+        while(activador):   
+            numero_maximo_texto = self.txt_maximo.get()
+            numero_minimo_texto = self.txt_minimo.get()
+            numero_maximo = float(numero_maximo_texto)
+            numero_minimo = float(numero_minimo_texto)              
+            numero_ingresar = prompt("Numero", "Ingrese un numero")
+            numero_ingresado = float(numero_ingresar)
+            if(numero_ingresado > numero_maximo):
+                self.txt_maximo.delete(0, 100000)
+                self.txt_maximo.insert(0, numero_ingresado)
+            if(numero_ingresado < numero_minimo):
+                self.txt_minimo.delete(0, 100000)
+                self.txt_minimo.insert(0, numero_ingresado)
+            elif(numero_ingresado == None):
+                break
 
 
 if __name__ == "__main__":

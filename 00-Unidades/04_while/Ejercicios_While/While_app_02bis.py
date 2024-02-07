@@ -29,7 +29,14 @@ class App(customtkinter.CTk):
         
     
     def btn_mostrar_iteracion_on_click(self):
-        pass
+        activador = True
+        numero_par = 0
+        while(activador):
+            numero_par += 2
+            alert("Numeros Pares", numero_par)
+            if numero_par >= 10:
+                break
+            
     
     
 if __name__ == "__main__":

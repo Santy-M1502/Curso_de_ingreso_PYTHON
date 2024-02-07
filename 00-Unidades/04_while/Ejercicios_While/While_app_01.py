@@ -29,7 +29,13 @@ class App(customtkinter.CTk):
         
     
     def btn_mostrar_iteracion_on_click(self):
-        pass
+        cuenta = True
+        contador = 1
+        while(cuenta):
+            alert("Contando", contador)
+            contador = contador + 1
+            if(contador == 11):
+                cuenta = False
     
     
 if __name__ == "__main__":
