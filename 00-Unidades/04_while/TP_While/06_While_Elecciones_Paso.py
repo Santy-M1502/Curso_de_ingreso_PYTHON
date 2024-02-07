@@ -5,8 +5,8 @@ from tkinter.simpledialog import askstring as prompt
 import customtkinter
 
 '''
-nombre:
-apellido:
+nombre: Santiago
+apellido: Martinez
 ---
 TP: While_elecciones_paso
 ---
@@ -90,10 +90,10 @@ class App(customtkinter.CTk):
 
  
         promedio_edades = (promedio_edades + total_edades) / total_candidatos
-        print("Candidato con mas votos: " + nombre_masvotos)
-        print("Candidato con menos votos: " + nombre_menosvotos + " con " + str(menor_voto))
-        print("Promedio de sus edades: " + str(promedio_edades))
-        print("Total de votos emitidos: " + str(total_votos))
+        alert("Votaciones Presidenciales", "Candidato con mas votos: " + nombre_masvotos)
+        alert("Votaciones Presidenciales", "Candidato con menos votos: " + nombre_menosvotos + " con " + str(menor_voto))
+        alert("Votaciones Presidenciales", "Promedio de sus edades: " + str(promedio_edades))
+        alert("Votaciones Presidenciales", "Total de votos emitidos: " + str(total_votos))
 
 
 if __name__ == "__main__":

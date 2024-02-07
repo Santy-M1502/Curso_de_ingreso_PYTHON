@@ -5,6 +5,11 @@ from tkinter.simpledialog import askstring as prompt
 import customtkinter
 
 '''
+nombre: Santiago
+apellido: Martinez
+---
+TP: ES_Pinturas
+---
 Enunciado:
 
 2.	Para el departamento de Pinturas:
