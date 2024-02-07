@@ -5,8 +5,8 @@ from tkinter.simpledialog import askstring as prompt
 import customtkinter
 
 '''
-nombre:
-apellido:
+nombre: Santiago
+apellido: Martinez
 ---
 TP: Iluminación
 ---
@@ -43,7 +43,56 @@ class App(customtkinter.CTk):
 
 
     def btn_calcular_on_click(self):
-        pass
+        precio = 800
+        marca = self.combobox_marca.get()
+        cantidad = int(self.combobox_cantidad.get())
+
+        match(cantidad):
+            case cantidad if cantidad >= 6:
+                precio = precio * cantidad
+                descuento = 50 * precio / 100
+                precio -= descuento
+            case cantidad if cantidad == 5:
+                precio = precio * 5
+                match(marca):
+                    case "ArgentinaLuz":
+                        descuento = 40 * precio / 100
+                        precio -= descuento
+                    case "FelipeLamparas" | "JeLuz" | "HazIluminacion" | "Osram":
+                        descuento = 30 * precio / 100
+                        precio -= descuento
+            case cantidad if cantidad == 4:
+                precio = precio * 4
+                match(marca):
+                    case "ArgentinaLuz" | "FelipeLamparas":
+                        descuento = 25 * precio / 100
+                        precio -= descuento
+                    case "JeLuz" |"HazIluminacion" | "Osram":
+                        descuento = 20 * precio / 100
+                        precio -= descuento
+            case cantidad if cantidad == 3:
+                precio = precio * 3
+                match(marca):
+                    case "ArgentinaLuz":
+                        descuento = 15 * precio / 100
+                        precio -= descuento
+                    case "FelipeLamparas":
+                        descuento = 10 * precio / 100
+                        precio -= descuento
+                    case "JeLuz" | "HazIluminacion" | "Osram":
+                        descuento = 5 * precio / 100
+                        precio -= descuento
+        match(precio):
+            case precio if precio >= 4000:
+                descuento = 5 * precio / 100
+                precio -= descuento
+        
+        alert("Iluminacion", "El precio total de su compra sera de $" + str(precio))
+                
+
+
+
+            
         
     
 if __name__ == "__main__":
