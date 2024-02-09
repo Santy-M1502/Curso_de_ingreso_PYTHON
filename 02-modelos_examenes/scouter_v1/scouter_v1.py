@@ -28,7 +28,7 @@ import warnings
 #? de cualquier parte del universo, es por eso que deberas realizar la carga 
 #? de 10 participantes.
 '''
-NOMBRE = '' # Completa tu nombre completo solo en esa variable
+NOMBRE = '' # Santiago Gabriel Martinez
 '''
 #?################ ENUNCIADO #################
 Para ello deberas programar el boton "Cargar Participantes" para poder cargar 10 luchadoras/es.
@@ -54,10 +54,10 @@ C) Al presionar el boton "Mostrar Informe 2"
     #! 0) - Cantidad de luchadores Terricolas.
     #! 1) - Cantidad de luchadores Alienigenas.
     #! 2) - Nombre, Raza y Poder del luchador mas fuerte.
-    #! 3) - Nombre, Raza y Poder del luchador mas debil.
+    #! 3) - Nombre, Raza y Poder del luchador mas debil. #ESTE#
     #! 4) - Cantidad de luchadores con mas de 2500 de poder.
     #! 5) - Cantidad de luchadores con menos de 2500 de poder.
-    #! 6) - Raza que mas luchadores posea inscriptos.
+    #! 6) - Raza que mas luchadores posea inscriptos. #ESTE#
     #! 7) - Raza que menos luchadores posea inscriptos.
     #! 8) - el promedio de poder de todos los luchadores inscriptos.
     #! 9) - el promedio de poder de todos los luchadores Saiyajines.
@@ -106,15 +106,58 @@ class App(customtkinter.CTk):
 
 
     def btn_cargar_participantes_on_click(self):
-        pass
+        for participante in range(10):
+            nombre = prompt("Torneo de Artes Marciales", "Ingrese el nombre del luchador") 
+            if not nombre:
+                alert("Torneo de Artes Marciales", "Ingrese un valor valido")
+                break
+            else:
+                self.lista_nombre_participantes.append(nombre)
+            raza = prompt("Torneo de Artes Marciales", "Ingrese el tipo de raza del luchador(Terricola , Namekiano, Alienigena , Saiyajin)") 
+            if not raza:
+                alert("Torneo de Artes Marciales", "Ingrese un valor valido")
+                break
+            else:
+                self.lista_raza_participantes.append(raza)
+            poder_texto = prompt("Torneo de Artes Marciales", "Ingrese el poder del luchador(entre 100 y 5000)") 
+            if not poder_texto:
+                break
+            else:
+                poder = int(poder_texto)
+                if(poder < 100 or poder > 5000):
+                    alert("Torneo de Artes Marciales", "Ingrese un valor valido")
+                    break
+                else:
+                    self.lista_poder_participantes.append(poder)
         
 
     def btn_mostrar_informe_1_on_click(self):
-        pass
+        participantes = zip(self.lista_nombre_participantes, self.lista_raza_participantes, self.lista_poder_participantes)
+        contador = 0
+        for info in participantes:
+            contador += 1
+            print(contador, info)
+
 
     
     def btn_mostrar_informe_2_on_click(self):
-        pass
+        raza = max(set(self.lista_raza_participantes), key=self.lista_raza_participantes.count)
+        raza_cantidad = self.lista_raza_participantes.count(raza)
+        print("La raza con mayor cantidad de participantes es " + raza + " son: " + str(raza_cantidad))
+        alert("Torneo de Artes Marciales", "La raza con mayor cantidad de participantes es " + raza + " son: " + str(raza_cantidad))
+
+        nombre_debil = "Nadie"
+        raza_debil = "Ninguno"
+        poder_debil = 0
+        participantes = zip(self.lista_nombre_participantes, self.lista_raza_participantes, self.lista_poder_participantes)
+        for info in participantes:
+            if(info[2] < poder_debil or poder_debil == 0):
+                nombre_debil = info[0]
+                raza_debil = info[1]
+                poder_debil = info[2]
+        print("El participante mas debil del torneo es " + nombre_debil + " de raza " + raza_debil + " y tiene " + str(poder_debil) + " de poder")
+        alert("Torneo de Artes Marciales", "El participante mas debil del torneo es " + nombre_debil + " de raza " + raza_debil + " y tiene " + str(poder_debil) + " de poder")
+
 
     
     def btn_mostrar_todos_informes_on_click(self):
