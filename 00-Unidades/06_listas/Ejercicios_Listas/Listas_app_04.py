@@ -6,8 +6,8 @@ from tkinter.simpledialog import askstring as prompt
 import customtkinter
 
 '''
-nombre:
-apellido:
+nombre: Santiago
+apellido: Martinez
 ---
 Ejercicio: listas_04
 ---
@@ -48,10 +48,41 @@ class App(customtkinter.CTk):
 
 
     def btn_ingresar_on_click(self):
-        pass
+        edad_texto = self.txt_edad.get()
+        edad_numero = int(edad_texto)
+        self.lista_edades.append(edad_numero)
+        self.txt_edad.delete(0, 1000)
+
+        genero_ingresado = self.txt_genero.get()
+        self.lista_generos.append(genero_ingresado)
+        self.txt_genero.delete(0, 1000)
 
     def btn_informar_on_click(self):
-        pass
+        cantidad_masculino = 0
+        suma_m_edades = 0
+        lista_m = zip(self.lista_edades, self.lista_generos)
+        for info in lista_m:
+            if info[1] == "Masculino":
+                suma_m_edades += info[0]
+                cantidad_masculino += 1
+        promedio_m_edad = suma_m_edades / cantidad_masculino
+
+        lista_f = zip(self.lista_edades, self.lista_generos)
+        contador_total = len(self.lista_edades)
+        cantidad_femenino_mayor = 0
+        for info in lista_f:
+            if info[0] >= 18 and info[1] == "Femenino":
+                cantidad_femenino_mayor += 1
+        porcentaje_femenino_mayor = cantidad_femenino_mayor * 100  / contador_total
+
+        print(cantidad_masculino)
+        print(suma_m_edades)
+        print(promedio_m_edad)
+
+        alert("UTN FRA",f"El promedio de edad entre los hombres es {promedio_m_edad}")
+        alert("UTN FRA",f"El porcentaje de mujeres mayores es {porcentaje_femenino_mayor}")
+
+
     
     
 if __name__ == "__main__":

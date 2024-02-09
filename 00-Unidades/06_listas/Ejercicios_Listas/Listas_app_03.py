@@ -5,8 +5,8 @@ from tkinter.simpledialog import askstring as prompt
 import customtkinter
 
 '''
-nombre:
-apellido:
+nombre: Santiago
+apellido: Martinez
 ---
 Ejercicio: listas_03
 ---
@@ -29,7 +29,11 @@ class App(customtkinter.CTk):
 
 
     def btn_calcular_on_click(self):
-        pass
+        contador = 0
+        for maximo_lista in self.lista_datos:
+            if(maximo_lista > contador):
+                contador = maximo_lista
+        alert("Numero mas grande", contador)
     
 if __name__ == "__main__":
     app = App()
