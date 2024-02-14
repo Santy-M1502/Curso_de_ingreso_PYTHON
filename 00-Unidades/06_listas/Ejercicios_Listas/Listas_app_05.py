@@ -49,10 +49,67 @@ class App(customtkinter.CTk):
 
 
     def btn_ingresar_on_click(self):
-        pass
+        edad_ingresado = int(self.txt_edad.get())
+        if edad_ingresado < 15 or edad_ingresado > 90:
+            alert("UTN FRA", "Ingrese una valor mayor a 15 y menor a 90")
+            self.txt_edad.delete(0, 1000)
+        else:
+            self.lista_edades.append(edad_ingresado)
+
+        genero_ingresado = self.txt_genero.get()
+        if not genero_ingresado:
+            alert("UTN FRA", "Ingrese una valor valido")
+        else:
+            self.lista_generos.append(genero_ingresado)
 
     def btn_informar_on_click(self):
-        pass
+        cantidad_total = len(self.lista_generos)
+        edad_menor = 0
+        genero_menor = []
+
+        cantidad_masculino = 0
+        cantidad_femenino = 0
+        cantidad_no_binario = 0
+        cantidad_f_mayor = 0
+
+        edad_masculino = 0
+        edad_femenino = 0
+        edad_no_binario = 0
+        lista = zip(self.lista_edades, self.lista_generos)
+        for info in lista:
+            if info[1] == "Masculino":
+                cantidad_masculino += 1
+                edad_masculino += info[0]
+            if info[1] == "Femenino":
+                cantidad_femenino += 1
+                edad_femenino += info[0]
+            if info[1] == "No Binario":
+                cantidad_no_binario += 1
+                edad_no_binario += info[0]
+            if info[0] >= 18 and info[1] == "Femenino":
+                cantidad_f_mayor += 1
+            if info[0] <= edad_menor or edad_menor == 0:
+                edad_menor = info[0]
+                genero_menor.append(info[1])
+        
+        promedio_masculino = edad_masculino / cantidad_masculino
+        porcentaje_f_mayor = cantidad_f_mayor * 100 / cantidad_total
+        porcentaje_m = cantidad_masculino * 100 / cantidad_total
+        porcentaje_f =cantidad_femenino * 100 / cantidad_total
+        porcentaje_nb =cantidad_no_binario * 100 / cantidad_total
+        
+        alert("UTN FRA", f"El promedio de las edades de los hombres es: {promedio_masculino}")
+        alert("UTN FRA", f"El porcentaje de mujeres mayores son: {porcentaje_f_mayor}")
+        alert("UTN FRA", f"El porcentaje de hombres es: {porcentaje_m}")
+        alert("UTN FRA", f"El porcentaje de mujeres es: {porcentaje_f}")
+        alert("UTN FRA", f"El porcentaje de no binarios es: {porcentaje_nb}")
+        alert("UTN FRA", f"Las personas con la edad mas baja son de genero: {genero_menor}, y tienen {edad_menor} años")
+
+
+
+
+
+        
     
 if __name__ == "__main__":
     app = App()

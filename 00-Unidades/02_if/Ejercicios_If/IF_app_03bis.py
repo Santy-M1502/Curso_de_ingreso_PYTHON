@@ -25,15 +25,15 @@ class App(customtkinter.CTk):
         self.label1 = customtkinter.CTkLabel(master=self, text="Altura(Cm)")
         self.label1.grid(row=0, column=0, padx=20, pady=10)
 
-        self.txt_edad = customtkinter.CTkEntry(master=self)
-        self.txt_edad.grid(row=0, column=1)
+        self.txt_altura = customtkinter.CTkEntry(master=self)
+        self.txt_altura.grid(row=0, column=1)
 
         self.btn_mostrar = customtkinter.CTkButton(
             master=self, text="Mostrar", command=self.btn_mostrar_on_click)
         self.btn_mostrar.grid(row=2, pady=20, columnspan=2, sticky="nsew")
 
     def btn_mostrar_on_click(self):
-        altura_ingresar = self.txt_edad.get()
+        altura_ingresar = self.txt_altura.get()
         altura_ingresado = float(altura_ingresar)
         if altura_ingresado >= 180:
             alert("UTN FRA", "Usted es pivot")

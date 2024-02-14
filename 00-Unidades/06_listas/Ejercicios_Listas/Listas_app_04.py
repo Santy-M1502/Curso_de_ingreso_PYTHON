@@ -75,9 +75,6 @@ class App(customtkinter.CTk):
                 cantidad_femenino_mayor += 1
         porcentaje_femenino_mayor = cantidad_femenino_mayor * 100  / contador_total
 
-        print(cantidad_masculino)
-        print(suma_m_edades)
-        print(promedio_m_edad)
 
         alert("UTN FRA",f"El promedio de edad entre los hombres es {promedio_m_edad}")
         alert("UTN FRA",f"El porcentaje de mujeres mayores es {porcentaje_femenino_mayor}")
