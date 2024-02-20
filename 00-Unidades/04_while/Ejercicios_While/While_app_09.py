@@ -40,33 +40,31 @@ class App(customtkinter.CTk):
                               columnspan=2, sticky="nsew")
 
     def btn_comenzar_ingreso_on_click(self):
-        activador = True
-        self.txt_maximo.insert(0, 0)
-        self.txt_minimo.insert(0, 0)
-        primer_valor = prompt("Numero", "Ingrese un numero")
-        self.txt_maximo.delete(0, 100000)
-        self.txt_minimo.delete(0, 100000)
-        self.txt_maximo.insert(0, primer_valor)
-        self.txt_minimo.insert(0, primer_valor)
-        numero_maximo_texto = self.txt_maximo.get()
-        numero_minimo_texto = self.txt_minimo.get()
-        numero_maximo = float(numero_maximo_texto)
-        numero_minimo = float(numero_minimo_texto)
-        while(activador):   
-            numero_maximo_texto = self.txt_maximo.get()
-            numero_minimo_texto = self.txt_minimo.get()
-            numero_maximo = float(numero_maximo_texto)
-            numero_minimo = float(numero_minimo_texto)              
-            numero_ingresar = prompt("Numero", "Ingrese un numero")
-            numero_ingresado = float(numero_ingresar)
-            if(numero_ingresado > numero_maximo):
-                self.txt_maximo.delete(0, 100000)
-                self.txt_maximo.insert(0, numero_ingresado)
-            if(numero_ingresado < numero_minimo):
-                self.txt_minimo.delete(0, 100000)
-                self.txt_minimo.insert(0, numero_ingresado)
-            elif(numero_ingresado == None):
+        bandera_primer = True
+        maximo = 0
+        minimo = 0
+
+        while True:
+            numero_ingresar = prompt("UTN FRA", "Ingrese un numero")
+
+            if numero_ingresar == None:
                 break
+
+            else:
+                numero_ingresado = int(numero_ingresar)
+            
+            if numero_ingresado > maximo or bandera_primer:
+                maximo = numero_ingresado
+            if numero_ingresado < minimo  or bandera_primer:
+                minimo = numero_ingresado
+                bandera_primer = False
+        
+        self.txt_maximo.delete(0, "end")
+        self.txt_minimo.delete(0, "end")
+        self.txt_maximo.insert(0, maximo)
+        self.txt_minimo.insert(0, minimo)
+
+
 
 
 if __name__ == "__main__":

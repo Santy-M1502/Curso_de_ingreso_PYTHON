@@ -38,12 +38,16 @@ class App(customtkinter.CTk):
         suma_contador = 0
         contador = 0
         while(contador < 5):
-            numero_ingresar = prompt("Numeros", "Ingrese 5 veces un numero")
+            numero_ingresar = prompt("Numeros", "Ingrese un numero")
             numero_ingresado = float(numero_ingresar)
             suma_contador = suma_contador + numero_ingresado          
             contador = contador + 1
+            
+        promedio = suma_contador / 5
+        self.txt_suma_acumulada.delete(0, "end")
+        self.txt_promedio.delete(0, "end")
         self.txt_suma_acumulada.insert(0, str(suma_contador))
-        self.txt_promedio.insert(0, str(suma_contador / 5))
+        self.txt_promedio.insert(0, str(promedio))
 
     
 if __name__ == "__main__":

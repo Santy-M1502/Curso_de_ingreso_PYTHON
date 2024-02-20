@@ -55,29 +55,30 @@ class App(customtkinter.CTk):
         self.btn_validar.grid(row=4, pady=20, columnspan=2, sticky="nsew")
 
     def btn_validar_on_click(self):
-        activador = True
-        while(activador):
-         apellido = self.txt_apellido.get()
-         if not apellido:
-            break
-         edad_texto = self.txt_edad.get()
-         edad_numero = int(edad_texto)
-         if(edad_numero is None):
-            break
-         if(edad_numero < 18 or edad_numero > 90):
-            break
-         estado = self.combobox_tipo.get()
-         legajo_texto = self.txt_legajo.get()
-         if not legajo_texto:
-            break
-         if(len(legajo_texto) > 4):
-            break
+        apellido = prompt("Rising BTL", "Ingrese su apellido")
+        while not(apellido):
+            apellido = prompt("Rising BTL", "Ingrese su apellido")
 
-         alert("Sus datos ingresados son", " Apellido: " + apellido)
-         alert("Sus datos ingresados son", " Edad: " + str(edad_numero))
-         alert("Sus datos ingresados son", " Estado: " + estado)
-         alert("Sus datos ingresados son", "Legajo: " + legajo_texto)
-         break
+        edad = prompt("Rising BTL", "Ingrese su edad")
+        while not(edad.isdigit()):
+            edad = prompt("Rising BTL", "Ingrese su edad")
+        edad_numero = int(edad)
+        while edad_numero < 18 or edad_numero > 90:
+            edad = prompt("Rising BTL", "Ingrese su edad")
+
+        legajo = prompt("Rising BTL", "Ingrese su legajo")
+        while not(legajo.isdigit()):
+            legajo = prompt("Rising BTL", "Ingrese su legajo")
+        legajo_numero = int(legajo)
+        while legajo_numero < 1000 or legajo_numero > 9999:
+            legajo = prompt("Rising BTL", "Ingrese su edad")
+
+
+        
+        self.txt_apellido.insert(0, apellido)
+        self.txt_edad.insert(0, edad)
+        self.txt_legajo.insert(0, legajo)
+
 
 
 if __name__ == "__main__":
