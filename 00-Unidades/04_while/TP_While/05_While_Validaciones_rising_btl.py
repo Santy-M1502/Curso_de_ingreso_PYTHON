@@ -57,21 +57,30 @@ class App(customtkinter.CTk):
     def btn_validar_on_click(self):
         apellido = prompt("Rising BTL", "Ingrese su apellido")
         while not(apellido):
-            apellido = prompt("Rising BTL", "Ingrese su apellido")
+            apellido = prompt("Rising BTL", "Ingrese su apellido nuevamente")
 
         edad = prompt("Rising BTL", "Ingrese su edad")
         while not(edad.isdigit()):
-            edad = prompt("Rising BTL", "Ingrese su edad")
+            edad = prompt("Rising BTL", "Ingrese su edad nuevamente")
         edad_numero = int(edad)
         while edad_numero < 18 or edad_numero > 90:
-            edad = prompt("Rising BTL", "Ingrese su edad")
+            edad = prompt("Rising BTL", "Ingrese su edad nuevamente")
+            edad_numero = int(edad)
+
+        estado_civil = prompt("Rising BTL", "Ingrese su estado civil")
+        while estado_civil != "Soltero" and estado_civil != "Soltera" and estado_civil != "Casado" and estado_civil != "Casada" and estado_civil != "Divorciado" and estado_civil != "Divorciada" and estado_civil != "Viudo" and estado_civil != "Viuda":
+            estado_civil = prompt("Rising BTL", "Ingrese su estado civil nuevamente")
+        self.combobox_tipo.set(estado_civil)
+
+        
 
         legajo = prompt("Rising BTL", "Ingrese su legajo")
         while not(legajo.isdigit()):
-            legajo = prompt("Rising BTL", "Ingrese su legajo")
+            legajo = prompt("Rising BTL", "Ingrese su legajo nuevamente")
         legajo_numero = int(legajo)
         while legajo_numero < 1000 or legajo_numero > 9999:
-            legajo = prompt("Rising BTL", "Ingrese su edad")
+            legajo = prompt("Rising BTL", "Ingrese su legajo nuevamente")
+            legajo_numero = int(legajo)
 
 
         

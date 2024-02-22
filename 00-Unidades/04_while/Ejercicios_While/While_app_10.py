@@ -43,26 +43,26 @@ class App(customtkinter.CTk):
         contador_positivos = 0
         contador_negativos = 0
         contador_ceros = 0
+        
         while(activador):
             valor_ingresar = prompt("Sumas de todo", "Ingrese los valores que desee")
-            if(valor_ingresar == None):
+            if valor_ingresar != None and valor_ingresar != "":
+                valor_ingresado = int(valor_ingresar)
+            else:
                 break
-            valor_ingresado = int(valor_ingresar)
             if(valor_ingresado >= 0):
                 suma_positivos = suma_positivos + valor_ingresado
                 contador_positivos = contador_positivos + 1
-            if(valor_ingresado <= 0):
+            elif(valor_ingresado <= 0):
                 suma_negativos = suma_negativos - valor_ingresado
                 contador_negativos = contador_negativos + 1
-            if("0" in valor_ingresar):
+            else:
                 contador_ceros = contador_ceros + 1
-        alert("Informacion Final","Los valores finales son; " +
-              "Suma acumulada de negativos: " + str(suma_negativos) + 
-              ". Suma acumulada de positivos: " + str(suma_positivos) + 
-              ". Cantidad de numeros negativos: " + str(contador_negativos) + 
-              ". Cantidad de numeros positivos: " + str(contador_positivos) + 
-              ". Cantidad de ceros: " + str(contador_ceros) + 
-              ". Y la diferencia entre la cantidad de los negativos y positivos es: " + str(contador_positivos - contador_negativos))
+
+        diferencia_pos_neg = contador_positivos - contador_negativos
+        
+        mensaje = f"Resultado \n la suma acumuladda de los negativos es: {suma_negativos} \n La suma acumulada de los positivos es: {suma_positivos} \n La cantidad de numeros negativos es: {contador_negativos} \n La cantidad de numeros positivos es: {contador_positivos} \n La cantidad de ceros es: {contador_ceros} \n La diferencia entre la cantidad de numeros positivos y negativos es: {diferencia_pos_neg}"
+        alert("UTN FRA", mensaje)
 
     
 if __name__ == "__main__":

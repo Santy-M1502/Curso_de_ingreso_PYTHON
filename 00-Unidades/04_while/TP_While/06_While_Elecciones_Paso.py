@@ -35,65 +35,77 @@ class App(customtkinter.CTk):
         self.btn_validar.grid(row=4, pady=20, columnspan=2, sticky="nsew")
 
     def btn_validar_on_click(self):
-        activador = True
-        nombre_masvotos = "Nadie"
-        nombre_menosvotos = "Nadie"
-        mayor_voto = 0
-        menor_voto = 0
-        promedio_edades = 0
-        total_votos = 0
-        total_candidatos = 0
-        total_edades = 0
-        nombre_candidato = prompt("Las paso", "Ingrese nombre de candidato")
-        edad_texto = prompt("Las paso", "Ingrese edad de candidato")
-        edad_numero = int(edad_texto)
-        cantidad_votos_texto = prompt("Las paso", "Ingrese la cantidad de votos de candidato")
-        cantidad_votos_numero = int(cantidad_votos_texto)
+        candidato_mas_votos = None
+        candidato_menos_votos = None
+        cantidad_mas_votos = 0
+        cantidad_menos_votos = 0
+        cantidad_candidatos = 0
+        edades = 0
+        cantidad_votos_total = 0
+        banderin = True
+        while(True):
+            sig_candidato = question("Las Paso", "¿Ingresar otro candidato?")
+            if sig_candidato == False:
+                break
+            nombre_candidato = prompt("Las Paso", "Ingrese el nombre")
+            while(True):          
+                if nombre_candidato != None and nombre_candidato != "":
+                    break
+                else:
+                    nombre_candidato = prompt("Las Paso", "Ingrese un nombre valido")
 
-        nombre_masvotos = nombre_candidato
-        nombre_menosvotos = nombre_candidato
-        total_candidatos = total_candidatos + 1
-        total_votos = total_votos + cantidad_votos_numero
-        total_edades = total_edades + edad_numero
-        menor_voto = cantidad_votos_numero
-        mayor_voto = cantidad_votos_numero
-    
-        while(activador):
+            edad_texto = prompt("Las Paso", "Ingrese la edad")
+            while(True):
+                if edad_texto != None and edad_texto != "":
+                   if edad_texto.isdigit():
+                        edad_candidato = int(edad_texto)
+                        if edad_candidato < 26:
+                            edad_texto = prompt("Las Paso", "Ingrese un valor mayor a 26")
+                        else:
+                            break
+                else:
+                    edad_texto = prompt("Las Paso", "Ingrese un valor mayor a 26")
+        
+            cantidad_texto = prompt("Las Paso", "Ingrese la cantidad de votos")
+            while(True):
+                if cantidad_texto != None and cantidad_texto != "":
+                    if cantidad_texto.isdigit():
+                        cantidad_votos = int(cantidad_texto)
+                        if cantidad_votos < 0:
+                            cantidad_texto = prompt("Las Paso", "Ingrese un valor mayor a 0")
+                        else:
+                            if cantidad_votos > cantidad_mas_votos or banderin:
+                                candidato_mas_votos = nombre_candidato
+                                cantidad_mas_votos = cantidad_votos
+                            if cantidad_votos < cantidad_menos_votos or banderin:
+                                candidato_menos_votos = nombre_candidato
+                                cantidad_menos_votos = cantidad_votos
+                            break
+                else:
+                    cantidad_texto = prompt("Las Paso", "Ingrese un valor mayor a 0")
+   
 
-            nombre_candidato = prompt("Las paso", "Ingrese nombre de candidato")
-            if not nombre_candidato:
+            cantidad_votos_total += cantidad_votos
+            edades += edad_candidato
+            cantidad_candidatos += 1
+            banderin = False       
+            if cantidad_texto == None or cantidad_texto == "":
                 break
 
-            edad_texto = prompt("Las paso", "Ingrese edad de candidato")
-            edad_numero = int(edad_texto)
-            if(edad_numero < 25):
-                break
+            
+        if cantidad_candidatos != 0:
+            promedio_edades = edades / cantidad_candidatos
+            alert("Las Paso", f"El promedio de edad de los candidatos es: {promedio_edades}")
 
-            cantidad_votos_texto = prompt("Las paso", "Ingrese la cantidad de votos de candidato")
-            cantidad_votos_numero = int(cantidad_votos_texto)
-            if(cantidad_votos_numero < 0):
-                break
+        alert("Las Paso", f"El candidato  con mas votos es: {candidato_mas_votos}, tuvo {cantidad_mas_votos} votos")
+        alert("Las Paso", f"El candidato  con menos votos es: {candidato_menos_votos}, tuvo {cantidad_menos_votos} votos")
+        alert("Las Paso", f"La cantidad total de votos fue de: {cantidad_votos_total}")
+            
 
-            total_votos = total_votos + cantidad_votos_numero
-            total_candidatos = total_candidatos + 1
-            total_edades = total_edades + edad_numero
+        
+            
 
-            if(cantidad_votos_numero >= 0 and cantidad_votos_numero <= mayor_voto):
-                menor_voto = cantidad_votos_numero
-                del nombre_menosvotos
-                nombre_menosvotos = nombre_candidato
 
-            if(cantidad_votos_numero > mayor_voto):
-                mayor_voto = cantidad_votos_numero
-                del nombre_masvotos
-                nombre_masvotos = nombre_candidato
-
- 
-        promedio_edades = (promedio_edades + total_edades) / total_candidatos
-        alert("Votaciones Presidenciales", "Candidato con mas votos: " + nombre_masvotos)
-        alert("Votaciones Presidenciales", "Candidato con menos votos: " + nombre_menosvotos + " con " + str(menor_voto))
-        alert("Votaciones Presidenciales", "Promedio de sus edades: " + str(promedio_edades))
-        alert("Votaciones Presidenciales", "Total de votos emitidos: " + str(total_votos))
 
 
 if __name__ == "__main__":
