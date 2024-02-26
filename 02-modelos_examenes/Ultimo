@@ -1,0 +1,188 @@
+from tkinter.messagebox import showinfo as alert
+from tkinter.messagebox import askyesno as question
+from tkinter.simpledialog import askstring as prompt
+import tkinter as tk
+import customtkinter
+
+"""
+Enunciado 1 : De 5  personas que ingresan al hospital se deben tomar y validar los siguientes datos.
+
+
+nombre ,
+temperatura, entre 35 y 42
+sexo( f, m , nb )
+ edad(mayor a 0)
+pedir datos por prompt y mostrar por print
+
+Punto A-informar cual fue el sexo mas ingresado
+
+Punto B-el porcentaje de personas con fiebre y el porcentaje sin fiebre
+
+
+Punto C - por el número de DNI del alumno
+
+DNI terminados en  0 o 1
+
+
+1)informar la cantidad de personas de sexo  femenino
+
+2) la edad promedio de  personas de sexo  masculino
+
+3) el nombre de la persona la persona de sexo  nb con más temperatura(si la hay)
+
+
+
+DNI terminados en  2 o 3
+
+
+1) informar la cantidad de personas de sexo  masculino
+
+2) la edad promedio de  personas de sexo  nb
+
+3) el nombre de la persona de sexo  femenino  con la temperatura mas baja(si la hay)
+
+
+
+DNI terminados en  4 o 5
+
+
+1)informar la cantidad de personas de sexo  nb
+
+2) la edad promedio de  personas de sexo  femenino
+
+3) el nombre de la persona  la persona de sexo  masculino con la temperatura mas baja(si la hay)
+
+
+
+DNI terminados en  6 o 7
+
+
+1)informar la cantidad de personas mayores de edad (desde los 18 años)
+
+2)la edad promedio en total de todas las personas mayores de edad (18 años)
+
+3) el nombre de la persona  la persona de sexo  masculino con la temperatura mas baja(si la hay)
+
+
+
+DNI terminados en  8 o 9
+
+
+1))informar la cantidad de personas menores de edad (menos de 18 años)
+
+2)la temperatura promedio en total de todas las personas menores de edad
+
+3) el nombre de la persona de sexo  femenino  con la temperatura mas baja(si la hay)
+
+
+
+Todos los alumnos:
+
+B-informar cual fue el sexo mas ingresado
+
+C-el porcentaje de personas con fiebre y el porcentaje sin fiebre
+"""
+
+class App(customtkinter.CTk):
+
+    def __init__(self):
+        super().__init__()
+
+        self.title("UTN FRA")
+
+        self.btn_mostrar = customtkinter.CTkButton(
+            master=self, text="Mostrar", command=self.btn_mostrar_on_click)
+        self.btn_mostrar.grid(row=2, pady=20, columnspan=2, sticky="nsew")
+
+    def btn_mostrar_on_click(self):
+        contador_m = 0
+        contador_f = 0
+        contador_nb = 0
+        con_fiebre = 0
+        sin_fiebre = 0
+        mayor_edad = 0
+        contador_mayores = 0
+        acumulador_mayores = 0
+        banderin = True
+        temperatura_baja = 0
+        nombre_baja = None
+        while(True):
+            nombre_ingresado = prompt("UTN FRA", "Ingrese el nombre")
+            while nombre_ingresado == "" or nombre_ingresado == None:
+                nombre_ingresado = prompt("UTN FRA", "Reingrese su nombre")
+            print(nombre_ingresado)
+
+            temperatura_ingresar = prompt("UTN FRA", "Ingrese la temperatura")
+            temperatura_ingresada = int(temperatura_ingresar)
+            while temperatura_ingresada < 35 or temperatura_ingresada > 42:
+                temperatura_ingresar = prompt("UTN FRA", "La temperatura debe ser entre 35º y 42º")
+                temperatura_ingresada = int(temperatura_ingresar)
+            if temperatura_ingresada >= 38:
+                con_fiebre += 1
+            else:
+                sin_fiebre += 1
+            print(temperatura_ingresada)
+            
+            sexo_ingresado = prompt("UTN FRA", "Ingrese la inicial de el genero( f, m , nb )")
+            while sexo_ingresado != "m" and sexo_ingresado != "f" and sexo_ingresado != "nb":
+                sexo_ingresado = prompt("UTN FRA", "Reingrese la inicial de su genero( f, m , nb )")
+            print(sexo_ingresado)
+
+            edad_ingresar = prompt("UTN FRA", "Ingrese la edad")
+            edad_ingresada = int(edad_ingresar)
+            while edad_ingresada < 0:
+                edad_ingresar = prompt("UTN FRA", "Ingrese un valor valido para la edad")
+                edad_ingresada = int(edad_ingresar)
+            if edad_ingresada >= 18:
+                mayor_edad += 1
+                contador_mayores += 1
+                acumulador_mayores += edad_ingresada
+            print(edad_ingresada)
+
+            match(sexo_ingresado):
+                case "m":
+                    contador_m += 1
+                    if temperatura_ingresada < temperatura_baja or banderin == True:
+                        temperatura_baja = temperatura_ingresada
+                        nombre_baja = nombre_ingresado
+                        banderin = False
+                case "f":
+                    contador_f += 1
+                case "nb":
+                    contador_nb += 1
+                
+            
+            seguir = question("UTN FRA", "¿Desea seguir?")
+            if seguir == False:
+                break
+        
+        if contador_m > contador_f and contador_m > contador_nb:
+            print("El sexo mas seleccionado fue el: Masculino")
+        elif contador_f > contador_nb:
+            print("El sexo mas seleccionado fue el: Femenino")
+        else:
+            print("El sexo mas seleccionado fue el: No Binario")
+        
+        total_personas = contador_f + contador_m + contador_nb
+        porcentaje_fiebre = con_fiebre * 100 / total_personas
+        porcentaje_sin_fiebre = sin_fiebre * 100 / total_personas
+        print(f"El porcentaje de personas con fiebre es %{porcentaje_fiebre}")
+        print(f"El porcentaje de personas SIN fiebre es %{porcentaje_sin_fiebre}")
+
+        print(f"La cantidad de personas mayores de edad es: {mayor_edad}")
+
+        promedio_edad_mayores = acumulador_mayores / contador_mayores
+        print(f"El promedio de edad de las personas mayores es: {promedio_edad_mayores}")
+
+        print(f"La persona con la temperatura mas baja, que es {temperatura_baja}º, se llama {nombre_baja}")
+
+        
+
+
+
+
+
+if __name__ == "__main__":
+    app = App()
+    app.geometry("300x300")
+    app.mainloop()
